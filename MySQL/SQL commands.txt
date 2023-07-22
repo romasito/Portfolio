@@ -1,0 +1,67 @@
+use uni;
+CREATE TABLE Університети (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45),
+  city VARCHAR(45)
+);
+CREATE TABLE Факультети (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45),
+  university_id INT,
+  FOREIGN KEY (university_id) REFERENCES Університети(id)
+);
+CREATE TABLE Викладачі (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(45),
+  last_name VARCHAR(45),
+  faculty_id INT,
+  FOREIGN KEY (faculty_id) REFERENCES Факультети(id)
+);
+CREATE TABLE Групи (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  number INT,
+  faculty_id INT,
+  professor_id INT,
+  FOREIGN KEY (faculty_id) REFERENCES Факультети(id),
+  FOREIGN KEY (professor_id) REFERENCES Викладачі(id)
+);
+
+CREATE TABLE Студенти (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(45),
+  last_name VARCHAR(45),
+  group_id INT,
+  FOREIGN KEY (group_id) REFERENCES Групи(id)
+);
+
+
+SELECT * FROM Університети;
+
+SELECT first_name, last_name FROM Студенти;
+
+SELECT * FROM Викладачі WHERE first_name = 'Іван';
+
+SELECT number FROM Групи WHERE number > 300;
+
+SELECT name FROM Університети WHERE name LIKE '%У%';
+
+
+
+
+SELECT COUNT(*) FROM Факультети;
+
+SELECT COUNT(city) FROM Університети  WHERE City LIKE 'Л%';
+
+SELECT MIN(number) from Групи;
+
+SELECT MIN(name) from Факультети;
+
+SELECT MAX(number) FROM Групи;
+
+SELECT AVG(id) FROM Викладачі;
+
+SELECT SUM(id) FROM Університети;
+
+SELECT * FROM uni.Студенти ORDER BY first_name;
+
+SELECT * FROM uni.Студенти ORDER BY first_name DESC;

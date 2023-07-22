@@ -1,0 +1,9 @@
+A) SELECT phone, delivery address FROM user WHERE name = Muzik;
+
+B) SELECT name FROM user WHERE name LIKE '%a';
+
+C) SELECT * FROM order WHERE sum > 2000;
+
+D) SELECT COUNT(id) FROM order;
+
+E) SELECT SUM(sum) FROM order; 
